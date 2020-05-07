@@ -3,7 +3,7 @@
 namespace Felli
 {
     /// <summary>
-    /// 
+    /// The main class of the game
     /// </summary>
     class Program
     {

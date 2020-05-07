@@ -3,7 +3,8 @@ using System;
 namespace Felli
 {
     /// <summary>
-    /// 
+    /// The game class treats of the game loop and game logic (player turns,
+    /// game state, control).
     /// </summary>
     public class Game
     {

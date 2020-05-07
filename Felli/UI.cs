@@ -3,7 +3,7 @@ using System;
 namespace Felli
 {
     /// <summary>
-    /// 
+    /// The User Interface class. Treats of visual components and inputs.
     /// </summary>
     public class UI
     {
