@@ -7,10 +7,14 @@ namespace Felli
     /// </summary>
     public class UI
     {
+        // The single string that manages all inputs on the game.
         public string Input { get; private set; } = "";
+        // A splitted array of strings used to read commands.
         public string[] SplitInput { get; private set;} 
 
-
+        /// <summary>
+        /// Displays the start message.
+        /// </summary>
         public void MessageStart()
         {
             Console.WriteLine(
@@ -18,9 +22,23 @@ namespace Felli
                 "pieces with the 'choose <color>' command.");
         }
 
+        /// <summary>
+        /// Displays the endgame message.
+        /// </summary>
         public void MessageGoodbye()
         {
             Console.WriteLine("Thanks for playing, see ya!");
+        }
+
+        /// <summary>
+        /// Displays the current turn information.
+        /// </summary>
+        /// <param name="turn">The current numeric turn</param>
+        /// <param name="player">The player of this turn</param>
+        public void MessageTurn(int turn, Tilestate player)
+        {
+            Console.WriteLine($"TURN {turn}");
+            Console.WriteLine($"{player} Piece Player round");
         }
 
         /// <summary>

@@ -64,8 +64,15 @@ namespace Felli
             playerColor = userInterface.BeginningLoop();
 
             if (playerColor == Tilestate.Empty) return;
-            
+
             gameBoard.SelectPlayersTurn(playerColor);
+            
+            while (userInterface.Input != "q")
+            {
+                userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
+                userInterface.WriteOnString();
+                gameBoard.Turn++;
+            }
         }
 
         /// <summary>

@@ -9,11 +9,9 @@ namespace Felli
     {
         //Talvez fique public
         private Tilestate[] board;
-        private int turn;
         private Tilestate firstPlayer, secondPlayer;
         
-
-
+        public int Turn { get; set; }
         //Property that returns the player that is currently playing 
         public Tilestate NextTurn
         {
@@ -23,7 +21,7 @@ namespace Felli
                 {
                     return Tilestate.Empty;
                 }
-                else if(turn % 2 == 0)
+                else if(Turn % 2 == 0)
                 {
                     return firstPlayer;
                 }
@@ -34,7 +32,6 @@ namespace Felli
 
             }
         }
-
         //Property that checks if the game is over or not
         public bool GameOver
         {
@@ -49,7 +46,7 @@ namespace Felli
         public Board()
         {
             board = new Tilestate[13];
-            turn = 0;
+            Turn = 0;
         }
 
         //Selects the players turns
