@@ -10,8 +10,10 @@ namespace Felli
         //Talvez fique public
         private Tilestate[] board;
         private int turn;
+        //Type of player for each turn
         private Tilestate firstPlayer, secondPlayer;
-        
+        //Number of pieces in game of each color 
+        private byte whiteNum, blackNum;
 
 
         //Property that returns the player that is currently playing 
@@ -44,6 +46,26 @@ namespace Felli
             }
         }
 
+        //Property that returns the player who won
+        public Tilestate Winner
+        {
+            get
+            {
+                if(GameOver)
+                {
+                    if(whiteNum == 0 && blackNum >= 0)     
+                    { 
+                        return Tilestate.Black; 
+                    }
+                    else if(whiteNum == 0 && whiteNum >= 0)
+                    { 
+                        return Tilestate.Black;
+                    }
+                }
+         
+                return Tilestate.Empty;    
+            }
+        }
 
 
         public Board()
