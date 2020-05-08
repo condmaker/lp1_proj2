@@ -8,8 +8,9 @@ namespace Felli
     public class Board
     {
         //Talvez fique public
-        private Tilestate[] board;
+        private Tile[] board;
         private int turn;
+        public int Turn{get; set;}
         //Type of player for each turn
         private Tilestate firstPlayer, secondPlayer;
         //Number of pieces in game of each color 
@@ -42,7 +43,11 @@ namespace Felli
         {
             get
             {
-                return false;
+                if(whiteNum == 0 || blackNum == 0)
+                {
+                    return true;
+                }
+                else { return false; }
             }
         }
 
@@ -68,10 +73,21 @@ namespace Felli
         }
 
 
+        //Constructor
         public Board()
         {
-            board = new Tilestate[13];
+            whiteNum = 6;
+            blackNum = 6;
+            board = new Tile[13];
             turn = 0;
+        }
+
+        //Creates the board 
+        public void CreateBoard()
+        {   
+
+
+
         }
 
         //Selects the players turns
