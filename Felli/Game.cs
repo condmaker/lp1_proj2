@@ -50,6 +50,8 @@ namespace Felli
                         break;
                 }
             }
+
+            userInterface.MessageGoodbye();
         }
 
         /// <summary>
@@ -57,7 +59,13 @@ namespace Felli
         /// </summary>
         private void BeginGame()
         {
+            Tilestate playerColor;
 
+            playerColor = userInterface.BeginningLoop();
+
+            if (playerColor == Tilestate.Empty) return;
+            
+            gameBoard.SelectPlayersTurn(playerColor);
         }
 
         /// <summary>
