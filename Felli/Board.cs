@@ -7,9 +7,12 @@ namespace Felli
     /// </summary>
     public class Board
     {
-        public Tilestate[] board;
+        //Talvez fique public
+        private Tilestate[] board;
         private int turn;
         private Tilestate firstPlayer, secondPlayer;
+        
+
 
         //Property that returns the player that is currently playing 
         public Tilestate NextTurn
@@ -41,6 +44,8 @@ namespace Felli
             }
         }
 
+
+
         public Board()
         {
             board = new Tilestate[13];
@@ -57,11 +62,11 @@ namespace Felli
                 this.firstPlayer = firstPlayer;     
                 secondPlayer = Tilestate.White;         
             }
-            else if(firstPlayer == Tilestate.Black)
+            else if(firstPlayer == Tilestate.White)
             {
                 //Selects White to be the first player to play
                 this.firstPlayer = firstPlayer;     
-                secondPlayer = Tilestate.White;        
+                secondPlayer = Tilestate.Black;        
             }
             else
             {
