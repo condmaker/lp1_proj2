@@ -37,24 +37,23 @@ namespace Felli
         /// Obtains numerous error codes.
         /// </summary>
         /// <param name="errorNumb">Byte that represents the error code</param>
-        public void ErrorMessage(byte errorNumb)
+        public void ErrorMessage(ErrorCode errorNumb)
         {
             switch (errorNumb)
             {
                 // Error Number 0
                 // For unknown inputs.
-                case 0:
-                    Console.WriteLine("Invalid input.");
+                case ErrorCode.UnkInput:
+                    Console.WriteLine("Unknown input.");
                     break;
 
                 // Error Number 1
                 //
-                case 1:
+                case ErrorCode.IllMove:
+                    Console.WriteLine("Illegal move.");
                     break;
                 
-                // Error Number 2
-                // 
-                case 2:
+                default:
                     break;
             }
 

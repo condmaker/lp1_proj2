@@ -46,7 +46,7 @@ namespace Felli
                         break;
 
                     default:
-                        userInterface.ErrorMessage(0);
+                        userInterface.ErrorMessage(ErrorCode.UnkInput);
                         break;
                 }
             }
