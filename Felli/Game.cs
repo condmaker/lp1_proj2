@@ -46,10 +46,12 @@ namespace Felli
                         break;
 
                     default:
-                        userInterface.ErrorMessage(0);
+                        userInterface.ErrorMessage(ErrorCode.UnkInput);
                         break;
                 }
             }
+
+            userInterface.MessageGoodbye();
         }
 
         /// <summary>
@@ -57,7 +59,23 @@ namespace Felli
         /// </summary>
         private void BeginGame()
         {
+            Board board = new Board();
+            userInterface.ShowBoard(board);
 
+            Tilestate playerColor;
+            
+            playerColor = userInterface.BeginningLoop();
+
+            if (playerColor == Tilestate.Empty) return;
+
+            gameBoard.SelectPlayersTurn(playerColor);
+            
+            while (userInterface.Input != "q")
+            {
+                userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
+                userInterface.WriteOnString();
+                gameBoard.Turn++;
+            }
         }
 
         /// <summary>

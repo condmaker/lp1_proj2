@@ -7,6 +7,10 @@ namespace Felli
     /// </summary>
     public class Tile
     {
-        
+
+        public Tilestate State{get; private set;}
+
+
+
     }
 }

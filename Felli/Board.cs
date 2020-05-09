@@ -26,7 +26,7 @@ namespace Felli
                 {
                     return Tilestate.Empty;
                 }
-                else if(turn % 2 == 0)
+                else if(Turn % 2 == 0)
                 {
                     return firstPlayer;
                 }
@@ -37,7 +37,6 @@ namespace Felli
 
             }
         }
-
         //Property that checks if the game is over or not
         public bool GameOver
         {
@@ -79,18 +78,19 @@ namespace Felli
             whiteNum = 6;
             blackNum = 6;
             board = new Tile[13];
-            turn = 0;
+            Turn = 0;
         }
 
         //Creates the board 
         public void CreateBoard()
         {   
-
-
-
+          
         }
 
-        //Selects the players turns
+        /// <summary>
+        /// Selects the players turns
+        /// </summary>
+        /// <param name="firstPlayer"></param>
         public void SelectPlayersTurn(Tilestate firstPlayer)
         {
             
