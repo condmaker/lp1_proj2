@@ -9,6 +9,12 @@ namespace Felli
     {
         //Talvez fique public
         private Tile[] board;
+
+        //por Private
+        private Tile[,] corBoard;
+        public Tile center;
+
+
         private int turn;
         public int Turn{get; set;}
         //Type of player for each turn
@@ -79,12 +85,87 @@ namespace Felli
             blackNum = 6;
             board = new Tile[13];
             Turn = 0;
+            CreateBoard();
         }
 
-        //Creates the board 
+        /// <summary>
+        /// Creates the board
+        /// </summary>
         public void CreateBoard()
         {   
-          
+
+            corBoard = new Tile[4,3]; 
+           
+            //Creates bidimensional array of tiles
+            for(int y = 0; y < 4; y++)
+            {
+                for(int x = 0; x < 3; x++)
+                {
+                    corBoard[y,x] = new Tile( (y*3) + x );
+                }
+            }
+            center = new Tile(12);
+
+            SetNeighbours();
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetNeighbours()
+        {       
+            Tile[] centerAux = new Tile[6];
+
+            for(int y = 0; y < 4; y++)
+            {
+                for(int x = 0; x < 3; x++)
+                { 
+                    Tile[] aux = new Tile[4];
+                    
+                    //left
+                    if(x > 0)
+                    {
+                        aux[0] = corBoard[y, x - 1];
+                    }
+                    //right
+                    if(x < 2)
+                    {                  
+                        aux[1] = corBoard[y, x + 1];
+                    }
+                    //up
+                    if(y == 1 || y == 3)
+                    {                  
+                        aux[2] = corBoard[y - 1, x];
+                    }
+                    //down
+                    if(y == 0 || y == 2)
+                    {            
+                        aux[3] = corBoard[y + 1, x];
+                    }
+                    
+                    if(y == 1)
+                    {
+                        aux[3] = center;
+                        centerAux[((y*3) + x) - 3] = corBoard[y,x];
+                    }
+                    if(y == 2)
+                    {
+                        aux[2] = center;
+                        centerAux[((y*3) + x) - 3] = corBoard[y,x];
+                    }
+                
+                    corBoard[y,x].Neighbours = aux;
+                }
+           
+                center.Neighbours = centerAux;
+           
+            }
+        }
+
+        public Tile GetTile(Position coord)
+        {
+            return corBoard[coord.Row, coord.Col];
         }
 
         /// <summary>
@@ -114,7 +195,6 @@ namespace Felli
 
         }
         
-
 
     }
 }
