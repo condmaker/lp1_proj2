@@ -146,7 +146,42 @@ namespace Felli
         /// </summary>
         public void ShowTutorial()
         {
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("|           Introduction          |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| Welcome to Felli! This a two    |");
+            Console.WriteLine("| player board game, where each   |");
+            Console.WriteLine("| player controls a set of black  |");
+            Console.WriteLine("| or white pieces. The first      |");
+            Console.WriteLine("| player will choose what color   |");
+            Console.WriteLine("| he wants to play as, and the    |");
+            Console.WriteLine("| second player will              |");
+            Console.WriteLine("| automatically be assigned the   |");
+            Console.WriteLine("| other color. After that it will |");
+            Console.WriteLine("| be asked who wants to play      |");
+            Console.WriteLine("| first.                          |");
+            Console.WriteLine("|                                 |");
+            Console.WriteLine("| Each set has 6 pieces each, and |");
+            Console.WriteLine("| they are evenly distributed     |");
+            Console.WriteLine("| across the board. The board     |");
+            Console.WriteLine("| layout is quite peculiar, since |");
+            Console.WriteLine("| it consists of 7 points (tiles) |");
+            Console.WriteLine("| forming an isosceles triangle,  |");
+            Console.WriteLine("| one on each side. Since it is   |");
+            Console.WriteLine("| quite difficult to clearly      |");
+            Console.WriteLine("| explain, here is an example of  |");
+            Console.WriteLine("| empty board:                    |");
 
+            // Show empty board here
+
+            Console.WriteLine("| The player's pieces are         |");
+            Console.WriteLine("| distributed evenly, white ones  |");
+            Console.WriteLine("| on the downer triangle, and the |");
+            Console.WriteLine("| black ones at the upper         |");
+            Console.WriteLine("| triangle, with the middle being |");
+            Console.WriteLine("| the only empty spot:            |");
+
+            // Starting board here
         }
 
         /// <summary>
