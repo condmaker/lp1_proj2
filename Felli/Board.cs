@@ -7,15 +7,10 @@ namespace Felli
     /// </summary>
     public class Board
     {
-        //Talvez fique public
-        private Tile[] board;
-
         //por Private
         private Tile[,] corBoard;
         public Tile center;
 
-
-        private int turn;
         public int Turn{get; set;}
         //Type of player for each turn
         private Tilestate firstPlayer, secondPlayer;
@@ -83,7 +78,6 @@ namespace Felli
         {
             whiteNum = 6;
             blackNum = 6;
-            board = new Tile[13];
             Turn = 0;
             CreateBoard();
         }
@@ -163,10 +157,17 @@ namespace Felli
             }
         }
 
+        /// <summary>
+        /// Get tile from coordinates
+        /// </summary>
+        /// <param name="coord"></param>
+        /// <returns></returns>
         public Tile GetTile(Position coord)
         {
-            return corBoard[coord.Row, coord.Col];
+            if(coord.Col == 4){return center;}
+            return corBoard[coord.Col, coord.Row];
         }
+
 
         /// <summary>
         /// Selects the players turns

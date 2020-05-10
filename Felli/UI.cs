@@ -146,63 +146,99 @@ namespace Felli
         /// Shows the game board
         /// </summary>
         /// <param name="board"></param>
-        public void ShowBoard(Board board)
+        public void ShowBoard(Board board, bool emptyMode = false)
         {
+            Position pos = new Position(0,0);
+            char displayChar = StateToChar(Tilestate.Empty);
+
             for(int i = 0; i < 13; i++)
-            {
+            {           
+
+                if(!emptyMode)
+                {
+                    pos.IndToPos(i);
+                    displayChar = StateToChar(board.GetTile(pos).State);
+                }
+
                 if(i < 3)
                 {
                     if((i + 1) % 3 == 0)
                     {
-                        Console.WriteLine("  .  ");
+                        Console.WriteLine($"  {displayChar}  ");
                         Console.Write("   ");
                     }
                     else
                     {
-                        Console.Write("  .  ");
+                        Console.Write($"  {displayChar}  ");
                     }
                 }
                 else if(i < 6)
                 {
                     if((i + 1) % 3 == 0)
                     {
-                        Console.WriteLine(" . ");
+                        Console.WriteLine($" {displayChar} ");
                     }
                     else
                     {
-                        Console.Write(" . ");
+                        Console.Write($" {displayChar} ");
                     }
                 }
                 else if(i == 6)
                 {
-                    Console.WriteLine("       .       ");
+                    Console.WriteLine($"       {displayChar}       ");
                     Console.Write("   ");
                 }
                 else if(i < 10)
                 {
                     if(i % 3 == 0)
                     {
-                        Console.WriteLine(" . ");
+                        Console.WriteLine($" {displayChar} ");
                     }
                     else
                     {
-                        Console.Write(" . ");
+                        Console.Write($" {displayChar} ");
                     }
                 }
                 else 
                 {
                     if(i % 3 == 0)
                     {
-                        Console.WriteLine("  .  ");
+                        Console.WriteLine($"  {displayChar}  ");
                     }
                     else
                     {
-                        Console.Write("  .  ");
+                        Console.Write($"  {displayChar}  ");
                     }
                 }
-
-                
+          
             }
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public char StateToChar(Tilestate state)
+        {
+            char displayChar = ' ';
+
+            switch(state)
+            {
+                case Tilestate.Empty:
+                    displayChar = '.';
+                break;
+                case Tilestate.Black:
+                    displayChar = '0';
+                break;
+                case Tilestate.White:
+                    displayChar = 'O';
+                break;
+            }
+
+            return displayChar;
         }
 
         /// <summary>
