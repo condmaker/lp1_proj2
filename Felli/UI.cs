@@ -15,12 +15,13 @@ namespace Felli
         /// <summary>
         /// Displays the start message.
         /// </summary>
-        public void MessageStart()
+        private void MessageStart()
         {
             Console.WriteLine(
                 "Welcome to Felli! PLAYER 1, please choose BLACK or WHITE " +
-                "pieces with the 'choose <color>' command.");
-        }
+                "pieces with the 'choose <color>' command. This player " +
+                "will also be the first one to begin.");
+        }      
 
         /// <summary>
         /// Displays the endgame message.
@@ -73,7 +74,8 @@ namespace Felli
 
 
         /// <summary>
-        /// Will print the game's main screen with all game's main commands.
+        /// Will print the game's main screen with all of the game's main
+        /// commands.
         /// </summary>
         public void MainMenu()
         {
@@ -86,6 +88,70 @@ namespace Felli
             Console.WriteLine("| q - Exit                        |");
             Console.WriteLine("-----------------------------------");
 
+        }
+
+        /// <summary>
+        /// Shows the game's tutorial.
+        /// </summary>
+        public void ShowTutorial()
+        {
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("|           Introduction          |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| Welcome to Felli! This a two    |");
+            Console.WriteLine("| player board game, where each   |");
+            Console.WriteLine("| player controls a set of black  |");
+            Console.WriteLine("| or white pieces. The first      |");
+            Console.WriteLine("| player will choose what color   |");
+            Console.WriteLine("| he wants to play as, and the    |");
+            Console.WriteLine("| second player will              |");
+            Console.WriteLine("| automatically be assigned the   |");
+            Console.WriteLine("| other color. After that it will |");
+            Console.WriteLine("| be asked who wants to play      |");
+            Console.WriteLine("| first.                          |");
+            Console.WriteLine("|                                 |");
+            Console.WriteLine("| Each set has 6 pieces each, and |");
+            Console.WriteLine("| they are evenly distributed     |");
+            Console.WriteLine("| across the board. The board     |");
+            Console.WriteLine("| layout is quite peculiar, since |");
+            Console.WriteLine("| it consists of 7 points (tiles) |");
+            Console.WriteLine("| forming an isosceles triangle,  |");
+            Console.WriteLine("| one on each side. Since it is   |");
+            Console.WriteLine("| quite difficult to clearly      |");
+            Console.WriteLine("| explain, here is an example of  |");
+            Console.WriteLine("| empty board:                    |");
+
+            // Show empty board here
+
+            Console.WriteLine("| The player's pieces are         |");
+            Console.WriteLine("| distributed evenly, white ones  |");
+            Console.WriteLine("| on the downer triangle, and the |");
+            Console.WriteLine("| black ones at the upper         |");
+            Console.WriteLine("| triangle, with the middle being |");
+            Console.WriteLine("| the only empty spot:            |");
+
+            // Starting board here
+
+            if (ContinueTutorial() == false) return;
+        }
+
+        /// <summary>
+        /// A simple bool function to work in tandem with ShowTutorial(). It
+        /// asks if the player wants to quit the tutorial or continue it.
+        /// </summary>
+        /// <returns>A boolean confirming if the input is to continue or
+        /// to quit.</returns>
+        private bool ContinueTutorial()
+        {
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("|      Press 'c' to continue,     |");
+            Console.WriteLine("|   or anything else to go back.  |");
+            Console.WriteLine("-----------------------------------");
+
+            WriteOnString();
+
+            if (Input == "c") return true;
+            return false;
         }
 
         /// <summary>
@@ -139,49 +205,6 @@ namespace Felli
             }
 
             return 0;
-        }
-
-        /// <summary>
-        /// Shows the game's tutorial.
-        /// </summary>
-        public void ShowTutorial()
-        {
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("|           Introduction          |");
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("| Welcome to Felli! This a two    |");
-            Console.WriteLine("| player board game, where each   |");
-            Console.WriteLine("| player controls a set of black  |");
-            Console.WriteLine("| or white pieces. The first      |");
-            Console.WriteLine("| player will choose what color   |");
-            Console.WriteLine("| he wants to play as, and the    |");
-            Console.WriteLine("| second player will              |");
-            Console.WriteLine("| automatically be assigned the   |");
-            Console.WriteLine("| other color. After that it will |");
-            Console.WriteLine("| be asked who wants to play      |");
-            Console.WriteLine("| first.                          |");
-            Console.WriteLine("|                                 |");
-            Console.WriteLine("| Each set has 6 pieces each, and |");
-            Console.WriteLine("| they are evenly distributed     |");
-            Console.WriteLine("| across the board. The board     |");
-            Console.WriteLine("| layout is quite peculiar, since |");
-            Console.WriteLine("| it consists of 7 points (tiles) |");
-            Console.WriteLine("| forming an isosceles triangle,  |");
-            Console.WriteLine("| one on each side. Since it is   |");
-            Console.WriteLine("| quite difficult to clearly      |");
-            Console.WriteLine("| explain, here is an example of  |");
-            Console.WriteLine("| empty board:                    |");
-
-            // Show empty board here
-
-            Console.WriteLine("| The player's pieces are         |");
-            Console.WriteLine("| distributed evenly, white ones  |");
-            Console.WriteLine("| on the downer triangle, and the |");
-            Console.WriteLine("| black ones at the upper         |");
-            Console.WriteLine("| triangle, with the middle being |");
-            Console.WriteLine("| the only empty spot:            |");
-
-            // Starting board here
         }
 
         /// <summary>
