@@ -77,7 +77,15 @@ namespace Felli
         /// </summary>
         public void MainMenu()
         {
-            Console.WriteLine("dog");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("|              Felli              |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| m - Print this menu again       |");
+            Console.WriteLine("| t - See the game's tutorial     |");
+            Console.WriteLine("| s - Start the game              |");
+            Console.WriteLine("| q - Exit                        |");
+            Console.WriteLine("-----------------------------------");
+
         }
 
         /// <summary>
@@ -146,6 +154,7 @@ namespace Felli
         /// </summary>
         public void WriteOnString()
         {
+            Console.Write(">");
             Input = Console.ReadLine();
         }
 
