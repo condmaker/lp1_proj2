@@ -16,7 +16,7 @@ namespace Felli
             Col = col;
         }
 
-
+    
         public Position IndToPos(int ind)
         {
             switch(ind)
@@ -77,6 +77,8 @@ namespace Felli
             }
             return this; 
         }
+
+        
 
     }
 }
