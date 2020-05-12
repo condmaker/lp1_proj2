@@ -119,20 +119,104 @@ namespace Felli
             Console.WriteLine("| one on each side. Since it is   |");
             Console.WriteLine("| quite difficult to clearly      |");
             Console.WriteLine("| explain, here is an example of  |");
-            Console.WriteLine("| empty board:                    |");
+            Console.WriteLine("| empty board:                    |\n");
 
             // Show empty board here
 
-            Console.WriteLine("| The player's pieces are         |");
+            Console.WriteLine("\n| The player's pieces are         |");
             Console.WriteLine("| distributed evenly, white ones  |");
             Console.WriteLine("| on the downer triangle, and the |");
             Console.WriteLine("| black ones at the upper         |");
             Console.WriteLine("| triangle, with the middle being |");
-            Console.WriteLine("| the only empty spot:            |");
+            Console.WriteLine("| the only empty spot:            |\n");
 
             // Starting board here
 
             if (ContinueTutorial() == false) return;
+
+            Console.WriteLine("\n-----------------------------------");
+            Console.WriteLine("|            Game Rules           |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| A player, on his turn, can      |");
+            Console.WriteLine("| choose *one* piece to move. Out |");
+            Console.WriteLine("| of all pieces (6 in total), you |");
+            Console.WriteLine("| can only select and move one    |");
+            Console.WriteLine("| per turn. The pieces can move   |");
+            Console.WriteLine("| in two ways: to a adjacent and  |");
+            Console.WriteLine("| empty spot, or 'jumping'        |");
+            Console.WriteLine("| through an enemy piece in an    |");
+            Console.WriteLine("| adjacent spot, and landing on   |");
+            Console.WriteLine("| the 'back' tile of the same     |");
+            Console.WriteLine("| direction, eliminating this     |");
+            Console.WriteLine("| specific enemy piece. Here is   |");
+            Console.WriteLine("| an example of this:             |\n");
+
+            // Update the board to show favorable conditions
+            // Show the board
+
+            Console.WriteLine("\n| Here we can see that the white  |");
+            Console.WriteLine("| piece (marked as O) can 'jump'  |");
+            Console.WriteLine("| over a black piece (marked as   |");
+            Console.WriteLine("| X). Now for the process of      |");
+            Console.WriteLine("| doing this move:                |\n");
+
+            // Update the board to show favorable conditions
+            // Show the board
+
+            Console.WriteLine("\n| It goes like that. As an        |");
+            Console.WriteLine("| addendum, you can only          |");
+            Console.WriteLine("| eliminate one piece at a time-- |");
+            Console.WriteLine("| unlike some other board games.  |");
+            Console.WriteLine("| As is obvious, too, you can't   |");
+            Console.WriteLine("| eliminate a piece if the tile   |");
+            Console.WriteLine("| you're going to land on         |");
+            Console.WriteLine("| afterwards is occupied.         |");
+
+            if (ContinueTutorial() == false) return;
+
+            Console.WriteLine("\n-----------------------------------");
+            Console.WriteLine("|           How to play           |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| When the game begins, the       |");
+            Console.WriteLine("| screen will show you the        |");
+            Console.WriteLine("| current turn count, whose turn  |");
+            Console.WriteLine("| it is, and the board itself.    |");
+            Console.WriteLine("|                                 |");
+            Console.WriteLine("| You can choose 3 inputs: the    |");
+            Console.WriteLine("| one that will allow you to      |");
+            Console.WriteLine("| pick one of your pieces in a    |");
+            Console.WriteLine("| certain tile, one to move it    |");
+            Console.WriteLine("| after choosing it, and one to   |");
+            Console.WriteLine("| leave the game (you can leave   |");
+            Console.WriteLine("| the program at all times using  |");
+            Console.WriteLine("| q, except on this tutorial).    |");
+            Console.WriteLine("| When the tile you're moving to  |");
+            Console.WriteLine("| has a enemy piece, the game     |");
+            Console.WriteLine("| will ask you if you want to     |");
+            Console.WriteLine("| 'jump' over and eliminate it,   |");
+            Console.WriteLine("| or redo your move.              |");
+            Console.WriteLine("|                                 |");
+            Console.WriteLine("| Now that all is explained, here |");
+            Console.WriteLine("| are the exact commands:         |");
+            Console.WriteLine("|                                 |");
+            Console.WriteLine("| Choosing a Piece                |\n");
+            Console.WriteLine(">choose <tile>                     \n");
+            Console.WriteLine("| Moving a piece                  |\n");
+            Console.WriteLine(">move <tile>                      ");
+
+            if (ContinueTutorial() == false) return;
+
+            Console.WriteLine("\n-----------------------------------");
+            Console.WriteLine("|        Winning Conditions       |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| In order to win the game, you   |");
+            Console.WriteLine("| must eliminate all of the       |");
+            Console.WriteLine("| enemies' pieces, with only      |");
+            Console.WriteLine("| yours remaining on the board.   |");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("| You have reached the end of the |");
+            Console.WriteLine("|            tutorial.            |");
+            Console.WriteLine("-----------------------------------");
         }
 
         /// <summary>
