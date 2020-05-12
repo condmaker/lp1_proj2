@@ -190,13 +190,20 @@ namespace Felli
             Console.WriteLine("| leave the game (you can leave   |");
             Console.WriteLine("| the program at all times using  |");
             Console.WriteLine("| q, except on this tutorial).    |");
-            Console.WriteLine("| When the tile you're moving to  |");
-            Console.WriteLine("| has a enemy piece, the game     |");
-            Console.WriteLine("| will ask you if you want to     |");
-            Console.WriteLine("| 'jump' over and eliminate it,   |");
-            Console.WriteLine("| or redo your move.              |");
-            Console.WriteLine("|                                 |");
-            Console.WriteLine("| Now that all is explained, here |");
+            Console.WriteLine("| To 'jump' over an enemy piece,  |");
+            Console.WriteLine("| you need to select the tile     |");
+            Console.WriteLine("| that the piece will be at       |");
+            Console.WriteLine("| *after* 'jumping', which is not |");
+            Console.WriteLine("| adjacent to the piece. Here is  |");
+            Console.WriteLine("| an example:                     |\n");
+
+            // Show the board
+
+            Console.WriteLine(">move tile coiso");
+
+            // Show the board
+            
+            Console.WriteLine("\n| Now that all is explained, here |");
             Console.WriteLine("| are the exact commands:         |");
             Console.WriteLine("|                                 |");
             Console.WriteLine("| Choosing a Piece                |\n");
