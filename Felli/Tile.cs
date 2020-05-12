@@ -95,17 +95,25 @@ namespace Felli
                 foreach(Tile s in target.Neighbours)
                 {
                     if (s == null)
-                    continue;
+                        continue;
 
                     if(s.index == t.index)
                     {
-                        if(pos1.IndToPos(index).Row == pos2.IndToPos(target.index).Row)
+                        if(pos1.IndToPos(this.index).Row 
+                            == pos2.IndToPos(target.index).Row)
+                        {
+                            continue;
+                        }
+
+                        if(pos1.IndToPos(this.index).Col 
+                            == pos2.IndToPos(target.index).Col)
                         {
                             continue;
                         }
 
                         if(t.State != playerState)
                         {
+                            Console.WriteLine("1");
                             betweenTile = t;
                         }
 

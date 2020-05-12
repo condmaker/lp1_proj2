@@ -96,10 +96,13 @@ namespace Felli
             {
                 for(int x = 0; x < 3; x++)
                 {
-                    corBoard[y,x] = new Tile( (y*3) + x );
+                    if(y <= 1)
+                        corBoard[y,x] = new Tile( (y*3) + x );
+                    else
+                        corBoard[y,x] = new Tile( 1 + (y*3) + x );
                 }
             }
-            center = new Tile(12);
+            center = new Tile(6);
 
             PlacePieces();
             SetNeighbours();
@@ -187,7 +190,7 @@ namespace Felli
         public Tile GetTile(Position coord)
         {
             if(coord.Col == 4){return center;}
-            return corBoard[coord.Col, coord.Row];
+            return corBoard[coord.Row, coord.Col];
         }
 
         /// <summary>
@@ -204,17 +207,9 @@ namespace Felli
         /// </summary>
         public void UpdateEnemy(Tile current, Tile after, Tilestate player)
         {
-            Tilestate aux;
-
             current.State = Tilestate.Empty;
             after.State = player;
-
-            if (player == Tilestate.White)
-                aux = Tilestate.Black;
-            else 
-                aux = Tilestate.White;
-
-            current.GetTileBetween(after, player).State = aux;
+            current.GetTileBetween(after, player).State = Tilestate.Empty;
         }
 
         /// <summary>

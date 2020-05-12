@@ -75,6 +75,9 @@ namespace Felli
 
             gameBoard.SelectPlayersTurn(playerColor);
             
+
+        
+
             while (userInterface.Input != "q")
             {
                 userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
