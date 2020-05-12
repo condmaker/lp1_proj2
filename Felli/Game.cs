@@ -59,8 +59,14 @@ namespace Felli
         /// </summary>
         private void BeginGame()
         {
-            Tilestate playerColor;
+            
+            Board board = new Board();
+            Position pos = new Position(0,0);
 
+            userInterface.ShowBoard(board, true);
+
+            Tilestate playerColor;
+            
             playerColor = userInterface.BeginningLoop();
 
             if (playerColor == Tilestate.Empty) return;
