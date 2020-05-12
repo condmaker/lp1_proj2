@@ -60,7 +60,7 @@ namespace Felli
         /// </summary>
         private void BeginGame()
         {
-            userInterface.ShowBoard(gameBoard, false);
+            userInterface.ShowBoard(gameBoard);
 
             Tilestate playerColor;
             
@@ -73,7 +73,7 @@ namespace Felli
             while (userInterface.Input != "q")
             {
                 userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
-                userInterface.ShowBoard(gameBoard, false);
+                userInterface.ShowBoard(gameBoard);
 
                 userInterface.WriteOnString();
                 // UpdateGame();

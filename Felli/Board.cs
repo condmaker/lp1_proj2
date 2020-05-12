@@ -9,7 +9,7 @@ namespace Felli
     {
         //por Private
         private Tile[,] corBoard;
-        public Tile center;
+        private Tile center;
 
         public int Turn{get; set;}
         //Type of player for each turn
@@ -85,7 +85,7 @@ namespace Felli
         /// <summary>
         /// Creates the board
         /// </summary>
-        public void CreateBoard()
+        private void CreateBoard()
         {   
 
             corBoard = new Tile[4,3]; 
@@ -100,6 +100,7 @@ namespace Felli
             }
             center = new Tile(12);
 
+            PlacePieces();
             SetNeighbours();
         }
 
@@ -107,7 +108,7 @@ namespace Felli
         /// <summary>
         /// 
         /// </summary>
-        public void SetNeighbours()
+        private void SetNeighbours()
         {       
             Tile[] centerAux = new Tile[6];
 
@@ -154,6 +155,26 @@ namespace Felli
            
                 center.Neighbours = centerAux;
            
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PlacePieces()
+        {
+            short i = -1; 
+            foreach (Tile t in corBoard)
+            {
+                i++;
+
+                if (i < 6)
+                {
+                    t.State = Tilestate.Black;
+                    continue;
+                }
+
+                t.State = Tilestate.White;
             }
         }
 
