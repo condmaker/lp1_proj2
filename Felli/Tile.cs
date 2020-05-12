@@ -34,6 +34,9 @@ namespace Felli
 
             foreach(Tile t in Neighbours)
             {
+                if (t == null)
+                    continue;
+
                 if(t.index == targetTile.index)
                 {
                     aux = MoveList.Possible;
@@ -43,10 +46,11 @@ namespace Felli
             
             if(canMove == MoveList.Impossible)
             {
-               if(GetTileBetween(targetTile, playerState) != null)
-               {
-                   canMove = MoveList.Enemy;
-               }
+                Console.WriteLine(GetTileBetween(targetTile, playerState).index);
+                if(GetTileBetween(targetTile, playerState) != null)
+                {
+                    canMove = MoveList.Enemy;
+                }
             }
 
 
@@ -58,6 +62,25 @@ namespace Felli
             return canMove;
         }
 
+        public bool IsSurrounded()
+        {
+            bool isSurronded = true;
+
+            foreach (Tile t in Neighbours)
+            {
+                if (t == null)
+                    continue;
+
+                if (t.State == Tilestate.Empty)
+                {
+                    isSurronded = false;
+                    break;
+                }
+            }
+
+            return isSurronded;
+        }
+
         public Tile GetTileBetween(Tile target, Tilestate playerState)
         {
             Tile betweenTile = null;
@@ -66,11 +89,17 @@ namespace Felli
             
             foreach(Tile t in Neighbours)
             {
+                if (t == null)
+                    continue;
+
                 foreach(Tile s in target.Neighbours)
                 {
+                    if (s == null)
+                    continue;
+
                     if(s.index == t.index)
                     {
-                        if(Math.Abs( pos1.IndToPos(index).Row - pos2.IndToPos(target.index).Row )  == 1)
+                        if(pos1.IndToPos(index).Row == pos2.IndToPos(target.index).Row)
                         {
                             continue;
                         }
@@ -84,6 +113,7 @@ namespace Felli
                 }
             }
 
+            
             return betweenTile;
 
         } 

@@ -19,6 +19,7 @@ namespace Felli
 
 
         //Property that returns the player that is currently playing 
+        // DAR CRÉDITO PRO STOR NO FINAL
         public Tilestate NextTurn
         {
             get

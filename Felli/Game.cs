@@ -60,9 +60,14 @@ namespace Felli
         /// </summary>
         private void BeginGame()
         {
-            userInterface.ShowBoard(gameBoard);
+            ushort inputCheck;
 
             Tilestate playerColor;
+
+            Tile currentPos;
+            Tile nextPos;
+            
+            userInterface.ShowBoard(gameBoard);
             
             playerColor = userInterface.BeginningLoop();
 
@@ -74,23 +79,79 @@ namespace Felli
             {
                 userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
                 userInterface.ShowBoard(gameBoard);
+                userInterface.MessageCommands();
 
                 userInterface.WriteOnString();
-                // UpdateGame();
+                userInterface.SplitString();
+
+                inputCheck = userInterface.InputFirstCheck("choose");
+
+                if (inputCheck == 1)
+                    break;
+                else if (inputCheck == 2)
+                {
+                    userInterface.ErrorMessage(ErrorCode.IllOpt);
+                    continue;
+                }
+
+                // Will obtain the tile in the Game Board by the input
+                currentPos = gameBoard.GetTile(
+                    ConvertStringToPos(userInterface.SplitInput[1]));
+
+                if (currentPos.IsSurrounded())
+                {
+                    userInterface.MessageSurroundWarning();
+                }
+                
+                userInterface.MessagePieceChosen();
+
+                userInterface.WriteOnString();
+                userInterface.SplitString();
+
+                inputCheck = userInterface.InputFirstCheck("move");
+
+                if (inputCheck == 1)
+                    break;
+                else if (inputCheck == 2)
+                {
+                    userInterface.ErrorMessage(ErrorCode.IllOpt);
+                    continue;
+                }
+
+                nextPos = gameBoard.GetTile(
+                    ConvertStringToPos(userInterface.SplitInput[1]));
+                
+                UpdateGame(currentPos, nextPos, gameBoard.NextTurn);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="currentPos"></param>
-        /// <param name="afterPos"></param>
+        /// <param name="strCoord"></param>
+        /// <returns></returns>
+        private Position ConvertStringToPos(string strCoord)
+        {
+            int posIndex;
+            Position posCoord = new Position(0, 0);
+
+            posIndex = int.Parse(strCoord);
+
+            posCoord.IndToPos(posIndex);
+
+            return posCoord;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentTile"></param>
+        /// <param name="afterTile"></param>
         /// <param name="currentPlayer"></param>
         private void UpdateGame(
-            Position currentPos, Position afterPos, Tilestate currentPlayer)
+            Tile currentTile, Tile afterTile, Tilestate currentPlayer)
         {
-            Tile currentTile = gameBoard.GetTile(currentPos);
-            Tile afterTile =   gameBoard.GetTile(afterPos);
 
             switch(currentTile.CanMoveBetweenTile(afterTile, currentPlayer))
             {

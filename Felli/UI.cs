@@ -18,10 +18,33 @@ namespace Felli
         private void MessageStart()
         {
             Console.WriteLine(
-                "Welcome to Felli! PLAYER 1, please choose BLACK or WHITE " +
+                "\nWelcome to Felli! PLAYER 1, please choose BLACK or WHITE " +
                 "pieces with the 'choose <color>' command. This player " +
                 "will also be the first one to begin.");
         }      
+
+        public void MessageCommands()
+        {
+            Console.WriteLine("\n| LIST OF COMMANDS |");
+            Console.WriteLine(
+                "| choose <index>   | Chooses an piece on the board.");
+            Console.WriteLine(
+                "| move <index>     | Moves a chosen piece to a determined " +
+                "location.\n");
+        }
+        
+        public void MessagePieceChosen()
+        {
+            Console.WriteLine("Piece chosen!");
+        }
+
+        public void MessageSurroundWarning()
+        {
+            Console.WriteLine("WARNING: This piece is completely surrounded, " +
+            "so there is the possibility of it being impossible to move. If "  +
+            "you realize you have made that mistake, input whichever "         +
+            "coordinate to reset the turn.");
+        }
 
         /// <summary>
         /// Displays the endgame message.
@@ -38,8 +61,8 @@ namespace Felli
         /// <param name="player">The player of this turn</param>
         public void MessageTurn(int turn, Tilestate player)
         {
-            Console.WriteLine($"TURN {turn}");
-            Console.WriteLine($"{player} Piece Player round");
+            Console.WriteLine($"\nTURN {turn}");
+            Console.WriteLine($"{player} Piece Player round\n");
         }
 
         /// <summary>
@@ -256,6 +279,7 @@ namespace Felli
         private ushort InputCheck(string comm1, string comm2)
         {
             if (SplitInput[0] == "q") return 1;
+
             else if (SplitInput[0] != comm1) 
             {
                 ErrorMessage(ErrorCode.UnkInput);
@@ -282,6 +306,7 @@ namespace Felli
         private ushort InputCheck(string comm1, string comm2, string comm3)
         {
             if (SplitInput[0] == "q") return 1;
+
             else if (SplitInput[0] != comm1) 
             {
                 ErrorMessage(ErrorCode.UnkInput);
@@ -295,6 +320,24 @@ namespace Felli
                 return 2;
             }
 
+            return 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="comm1"></param>
+        /// <returns></returns>
+        public ushort InputFirstCheck(string comm1)
+        {
+            if (SplitInput[0] == "q") return 1;
+
+            else if (SplitInput[0] != comm1) 
+            {
+                ErrorMessage(ErrorCode.UnkInput);
+                return 2;
+            }
+            
             return 0;
         }
 
@@ -415,7 +458,7 @@ namespace Felli
         {
             SplitInput = Input.Split(" ");
 
-            if (SplitInput.Length > 3) 
+            if (SplitInput.Length > 4) 
             {
                 Array.Clear(SplitInput, 0, SplitInput.Length);
                 ErrorMessage(ErrorCode.UnkInput);
@@ -442,6 +485,12 @@ namespace Felli
                 case ErrorCode.IllMove:
                     Console.WriteLine(
                         "Illegal move. You cannot move to this position.");
+                    break;
+
+                case ErrorCode.IllOpt:
+                    Console.WriteLine(
+                        "Illegal option. You don't have a piece in this " +
+                        "position.");
                     break;
                     
                 default:
