@@ -28,8 +28,6 @@ namespace Felli
         /// <returns></returns>
         public int CanMoveBetweenTile(Tile targetTile, Tilestate playerState)
         {
-            Position pos1 = new Position(0,0); 
-            Position pos2 = new Position(0,0); 
             int canMove = 1;
             int aux = 0;
 
@@ -44,25 +42,10 @@ namespace Felli
             
             if(canMove == 0)
             {
-                foreach(Tile t in Neighbours)
-                {
-                    foreach(Tile s in targetTile.Neighbours)
-                    {
-                        if(s.index == t.index)
-                        {
-                            if(Math.Abs( pos1.IndToPos(index).Row - pos2.IndToPos(targetTile.index).Row )  == 1)
-                            {
-                                continue;
-                            }
-
-                            if(t.State != playerState)
-                            {
-                                canMove = 2;
-                            }
-
-                        }
-                    }
-                }
+               if(GetTileBetween(targetTile, playerState) != null)
+               {
+                   canMove = 2;
+               }
             }
 
 
@@ -73,6 +56,36 @@ namespace Felli
 
             return canMove;
         }
+
+        public Tile GetTileBetween(Tile target, Tilestate playerState)
+        {
+            Tile betweenTile = null;
+            Position pos1 = new Position(0,0); 
+            Position pos2 = new Position(0,0); 
+            
+            foreach(Tile t in Neighbours)
+            {
+                foreach(Tile s in target.Neighbours)
+                {
+                    if(s.index == t.index)
+                    {
+                        if(Math.Abs( pos1.IndToPos(index).Row - pos2.IndToPos(target.index).Row )  == 1)
+                        {
+                            continue;
+                        }
+
+                        if(t.State != playerState)
+                        {
+                            betweenTile = t;
+                        }
+
+                    }
+                }
+            }
+
+            return betweenTile;
+
+        } 
 
     }
 }
