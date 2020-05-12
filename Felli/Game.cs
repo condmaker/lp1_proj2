@@ -28,6 +28,7 @@ namespace Felli
                 // Changes the string value
                 userInterface.WriteOnString();
 
+                // 
                 switch (userInterface.Input)
                 {
                     case "m":
@@ -59,11 +60,7 @@ namespace Felli
         /// </summary>
         private void BeginGame()
         {
-            
-            Board board = new Board();
-            Position pos = new Position(0,0);
-
-            userInterface.ShowBoard(board, true);
+            userInterface.ShowBoard(gameBoard, false);
 
             Tilestate playerColor;
             
@@ -76,17 +73,44 @@ namespace Felli
             while (userInterface.Input != "q")
             {
                 userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
+                userInterface.ShowBoard(gameBoard, false);
+
                 userInterface.WriteOnString();
-                gameBoard.Turn++;
+                // UpdateGame();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void UpdateGame()
+        /// <param name="currentPos"></param>
+        /// <param name="afterPos"></param>
+        /// <param name="currentPlayer"></param>
+        private void UpdateGame(
+            Position currentPos, Position afterPos, Tilestate currentPlayer)
         {
+            Tile currentTile = gameBoard.GetTile(currentPos);
+            Tile afterTile =   gameBoard.GetTile(afterPos);
 
+            switch(currentTile.CanMoveBetweenTile(afterTile, currentPlayer))
+            {
+                case MoveList.Impossible:
+                    userInterface.ErrorMessage(ErrorCode.IllMove);
+
+                    break;
+                case MoveList.Possible:
+                    gameBoard.UpdateSimple(
+                        currentTile, afterTile, currentPlayer);
+
+                    gameBoard.Turn++;
+                    break;
+                case MoveList.Enemy:
+                    gameBoard.UpdateEnemy(
+                        currentTile, afterTile, currentPlayer);
+                        
+                    gameBoard.Turn++;
+                    break;
+            }
         }
     }
 }

@@ -158,7 +158,7 @@ namespace Felli
         }
 
         /// <summary>
-        /// Get tile from coordinates
+        /// Get tile from coordinates from the board's tileset
         /// </summary>
         /// <param name="coord"></param>
         /// <returns></returns>
@@ -168,6 +168,32 @@ namespace Felli
             return corBoard[coord.Col, coord.Row];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void UpdateSimple(Tile current, Tile after, Tilestate player)
+        {
+            current.State = Tilestate.Empty;
+            after.State = player;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void UpdateEnemy(Tile current, Tile after, Tilestate player)
+        {
+            Tilestate aux;
+
+            current.State = Tilestate.Empty;
+            after.State = player;
+
+            if (player == Tilestate.White)
+                aux = Tilestate.Black;
+            else 
+                aux = Tilestate.White;
+
+            current.GetTileBetween(after, player).State = aux;
+        }
 
         /// <summary>
         /// Selects the players turns

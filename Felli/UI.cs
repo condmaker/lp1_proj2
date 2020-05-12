@@ -440,7 +440,8 @@ namespace Felli
                 // Error Number 1
                 //
                 case ErrorCode.IllMove:
-                    Console.WriteLine("Illegal move.");
+                    Console.WriteLine(
+                        "Illegal move. You cannot move to this position.");
                     break;
                     
                 default:

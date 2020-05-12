@@ -26,32 +26,33 @@ namespace Felli
         /// <param name="targetTile"></param>
         /// <param name="playerState"></param>
         /// <returns></returns>
-        public int CanMoveBetweenTile(Tile targetTile, Tilestate playerState)
+        public MoveList CanMoveBetweenTile(
+            Tile targetTile, Tilestate playerState)
         {
-            int canMove = 1;
-            int aux = 0;
+            MoveList canMove = MoveList.Possible;
+            MoveList aux = MoveList.Impossible;
 
             foreach(Tile t in Neighbours)
             {
                 if(t.index == targetTile.index)
                 {
-                    aux = 1;
+                    aux = MoveList.Possible;
                 }
             }
             canMove = aux;
             
-            if(canMove == 0)
+            if(canMove == MoveList.Impossible)
             {
                if(GetTileBetween(targetTile, playerState) != null)
                {
-                   canMove = 2;
+                   canMove = MoveList.Enemy;
                }
             }
 
 
             if(targetTile.State != Tilestate.Empty)
             {
-                canMove = 0;
+                canMove = MoveList.Impossible;
             }
 
             return canMove;
