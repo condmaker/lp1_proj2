@@ -46,7 +46,6 @@ namespace Felli
             
             if(canMove == MoveList.Impossible)
             {
-                Console.WriteLine(GetTileBetween(targetTile, playerState).index);
                 if(GetTileBetween(targetTile, playerState) != null)
                 {
                     canMove = MoveList.Enemy;
@@ -84,9 +83,12 @@ namespace Felli
         public Tile GetTileBetween(Tile target, Tilestate playerState)
         {
             Tile betweenTile = null;
-            Position pos1 = new Position(0,0); 
-            Position pos2 = new Position(0,0); 
+            Position selfPos = new Position(0,0).IndToPos(index); 
+            Position targetPos = new Position(0,0).IndToPos(target.index); 
+            Position betweenPos = new Position(0,0); 
             
+
+
             foreach(Tile t in Neighbours)
             {
                 if (t == null)
@@ -99,22 +101,27 @@ namespace Felli
 
                     if(s.index == t.index)
                     {
-                        if(pos1.IndToPos(this.index).Row 
-                            == pos2.IndToPos(target.index).Row)
+                        bool aux = false;
+                        betweenPos.IndToPos(s.index);
+
+
+                        if(betweenPos.Row == targetPos.Row
+                        && betweenPos.Row == selfPos.Row) 
                         {
-                            continue;
+                            aux = true;
+                        }
+                        
+                        if(CheckBetweenPossibilities(targetPos, selfPos))
+                        {
+                            aux = true;
                         }
 
-                        if(pos1.IndToPos(this.index).Col 
-                            == pos2.IndToPos(target.index).Col)
+                        if(aux)
                         {
-                            continue;
-                        }
-
-                        if(t.State != playerState)
-                        {
-                            Console.WriteLine("1");
-                            betweenTile = t;
+                            if(t.State != playerState)
+                            {
+                                betweenTile = t;
+                            }
                         }
 
                     }
@@ -125,6 +132,49 @@ namespace Felli
             return betweenTile;
 
         } 
+
+
+        public bool CheckBetweenPossibilities(Position pos1, Position pos2)
+        {
+            string colString = pos1.Col + "" + pos2.Col;
+            string rowstring = pos1.Row + "" + pos2.Row;
+
+            bool aux = false;
+
+            switch(rowstring)
+            {
+                case "04":
+                    aux = true;
+                    break;
+                case "40":
+                    aux = true;
+                    break;
+                case "43":
+                    aux = true;
+                    break;
+                case "34":
+                    aux = true;
+                    break; 
+            }
+
+            switch(colString)
+            {
+                case "02":
+                    aux = true;
+                    break;
+                case "20":
+                    aux = true;
+                    break;
+                case "11":
+                    aux = true;
+                    break;
+            }
+
+            
+            return aux;
+        }
+
+
 
     }
 }
