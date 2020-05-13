@@ -74,11 +74,8 @@ namespace Felli
             if (playerColor == Tilestate.Empty) return;
 
             gameBoard.SelectPlayersTurn(playerColor);
-            
 
-        
-
-            while (userInterface.Input != "q")
+            while ((userInterface.Input != "q") && !gameBoard.GameOver)
             {
                 userInterface.MessageTurn(gameBoard.Turn, gameBoard.NextTurn);
                 userInterface.ShowBoard(gameBoard);
@@ -87,13 +84,18 @@ namespace Felli
                 userInterface.WriteOnString();
                 userInterface.SplitString();
 
-                inputCheck = userInterface.InputFirstCheck("choose");
+                inputCheck = userInterface.InputFirstCheck("choose", "pass");
 
                 if (inputCheck == 1)
                     break;
                 else if (inputCheck == 2)
                 {
                     userInterface.ErrorMessage(ErrorCode.IllOpt);
+                    continue;
+                }
+                else if (inputCheck == 3)
+                {
+                    gameBoard.Turn++;
                     continue;
                 }
 
@@ -126,6 +128,10 @@ namespace Felli
                 
                 UpdateGame(currentPos, nextPos, gameBoard.NextTurn);
             }
+
+            if (gameBoard.GameOver == true)
+                userInterface.MessageWinGame(gameBoard.Winner);
+
         }
 
         /// <summary>

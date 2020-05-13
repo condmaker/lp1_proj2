@@ -3,7 +3,8 @@ using System;
 namespace Felli
 {
     /// <summary>
-    /// The tile class.
+    /// A class that manages position and position conversion by the index of
+    /// the board.
     /// </summary>
     public class Position
     {

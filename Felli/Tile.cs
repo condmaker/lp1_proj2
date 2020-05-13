@@ -3,7 +3,7 @@ using System;
 namespace Felli
 {
     /// <summary>
-    /// The tile class.
+    /// The tile class. Manages a certain tile's state, index, and neighbours.
     /// </summary>
     public class Tile
     {

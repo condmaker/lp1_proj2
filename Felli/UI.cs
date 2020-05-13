@@ -23,6 +23,9 @@ namespace Felli
                 "will also be the first one to begin.");
         }      
 
+        /// <summary>
+        /// Displays the possible game commands on screen.
+        /// </summary>
         public void MessageCommands()
         {
             Console.WriteLine("\n| LIST OF COMMANDS |");
@@ -31,19 +34,37 @@ namespace Felli
             Console.WriteLine(
                 "| move <index>     | Moves a chosen piece to a determined " +
                 "location.\n");
+            Console.WriteLine(
+                "| pass             | Passes current player's turn. \n");
+            
         }
         
+        /// <summary>
+        /// Displays a message confirming the player has chosen a piece.
+        /// </summary>
         public void MessagePieceChosen()
         {
             Console.WriteLine("Piece chosen!");
         }
 
+        /// <summary>
+        /// Warns the player about the possibility of the play being impossible.
+        /// </summary>
         public void MessageSurroundWarning()
         {
             Console.WriteLine("WARNING: This piece is completely surrounded, " +
             "so there is the possibility of it being impossible to move. If "  +
             "you realize you have made that mistake, input whichever "         +
             "coordinate to reset the turn.");
+        }
+
+        /// <summary>
+        /// Shows which player won at the end.
+        /// </summary>
+        /// <param name="winner">A tilestate object to define who won</param>
+        public void MessageWinGame(Tilestate winner)
+        {
+            Console.WriteLine($"Congratulations, {winner} Player! You win!");
         }
 
         /// <summary>
@@ -118,6 +139,9 @@ namespace Felli
         /// </summary>
         public void ShowTutorial()
         {
+            Board exampleBoard = new Board();
+            Tile  exampleTile;
+
             Console.WriteLine("-----------------------------------");
             Console.WriteLine("|           Introduction          |");
             Console.WriteLine("-----------------------------------");
@@ -145,6 +169,7 @@ namespace Felli
             Console.WriteLine("| empty board:                    |\n");
 
             // Show empty board here
+            ShowBoard(exampleBoard, true);
 
             Console.WriteLine("\n| The player's pieces are         |");
             Console.WriteLine("| distributed evenly, white ones  |");
@@ -154,6 +179,7 @@ namespace Felli
             Console.WriteLine("| the only empty spot:            |\n");
 
             // Starting board here
+            ShowBoard(exampleBoard);
 
             if (ContinueTutorial() == false) return;
 
@@ -175,16 +201,26 @@ namespace Felli
             Console.WriteLine("| an example of this:             |\n");
 
             // Update the board to show favorable conditions
+            exampleTile = exampleBoard.GetTile(new Position(1, 1));
+            exampleTile.State = Tilestate.Empty;
+            exampleTile = exampleBoard.GetTile(new Position(4, 4));
+            exampleTile.State = Tilestate.Black;
             // Show the board
+            ShowBoard(exampleBoard);
 
             Console.WriteLine("\n| Here we can see that the white  |");
             Console.WriteLine("| piece (marked as O) can 'jump'  |");
             Console.WriteLine("| over a black piece (marked as   |");
-            Console.WriteLine("| X). Now for the process of      |");
+            Console.WriteLine("| 0). Now for the process of      |");
             Console.WriteLine("| doing this move:                |\n");
 
             // Update the board to show favorable conditions
+            exampleTile = exampleBoard.GetTile(new Position(1, 1));
+            exampleTile.State = Tilestate.White;
+            exampleTile = exampleBoard.GetTile(new Position(4, 4));
+            exampleTile.State = Tilestate.Empty;
             // Show the board
+            ShowBoard(exampleBoard);
 
             Console.WriteLine("\n| It goes like that. As an        |");
             Console.WriteLine("| addendum, you can only          |");
@@ -212,27 +248,54 @@ namespace Felli
             Console.WriteLine("| after choosing it, and one to   |");
             Console.WriteLine("| leave the game (you can leave   |");
             Console.WriteLine("| the program at all times using  |");
-            Console.WriteLine("| q, except on this tutorial).    |");
+            Console.WriteLine("| q).                             |");
             Console.WriteLine("| To 'jump' over an enemy piece,  |");
             Console.WriteLine("| you need to select the tile     |");
             Console.WriteLine("| that the piece will be at       |");
             Console.WriteLine("| *after* 'jumping', which is not |");
             Console.WriteLine("| adjacent to the piece. Here is  |");
-            Console.WriteLine("| an example:                     |\n");
+            Console.WriteLine("| the previous example, where the |");
+            Console.WriteLine("| white piece jumps over the      |");
+            Console.WriteLine("| black one:                      |\n");
+
+            // Update the board to show favorable conditions
+            exampleTile = exampleBoard.GetTile(new Position(1, 1));
+            exampleTile.State = Tilestate.Empty;
+            exampleTile = exampleBoard.GetTile(new Position(4, 4));
+            exampleTile.State = Tilestate.Black;
 
             // Show the board
+            ShowBoard(exampleBoard);
 
-            Console.WriteLine(">move tile coiso");
+            Console.WriteLine("\n>move 4\n");
 
+            // Update the board to show favorable conditions
+            exampleTile = exampleBoard.GetTile(new Position(1, 1));
+            exampleTile.State = Tilestate.White;
+            exampleTile = exampleBoard.GetTile(new Position(4, 4));
+            exampleTile.State = Tilestate.Empty;
             // Show the board
+            ShowBoard(exampleBoard);
             
-            Console.WriteLine("\n| Now that all is explained, here |");
+            Console.WriteLine("\n| Now, to answer a question that  |");
+            Console.WriteLine("| may be pertinent: the other     |");
+            Console.WriteLine("| 'board' to the right is a       |");
+            Console.WriteLine("| helping image for you to locate |");
+            Console.WriteLine("| each tile's position number, as |");
+            Console.WriteLine("| you may have seen on this       |");
+            Console.WriteLine("| previous example. It is present |");
+            Console.WriteLine("| at all times, to help you input |");
+            Console.WriteLine("| your commands without problems. |");
+            Console.WriteLine("|                                 |");
+            Console.WriteLine("| Now that all is explained, here |");
             Console.WriteLine("| are the exact commands:         |");
             Console.WriteLine("|                                 |");
             Console.WriteLine("| Choosing a Piece                |\n");
             Console.WriteLine(">choose <tile>                     \n");
             Console.WriteLine("| Moving a piece                  |\n");
             Console.WriteLine(">move <tile>                      ");
+            Console.WriteLine("| Choosing to NOT move            |\n");
+            Console.WriteLine(">pass                             ");
 
             if (ContinueTutorial() == false) return;
 
@@ -324,10 +387,11 @@ namespace Felli
         }
 
         /// <summary>
-        /// 
+        /// Checks if only the first argument of the splitted input is equal
+        /// to a given string
         /// </summary>
-        /// <param name="comm1"></param>
-        /// <returns></returns>
+        /// <param name="comm1">The given string</param>
+        /// <returns>A ushort number to identify the state.</returns>
         public ushort InputFirstCheck(string comm1)
         {
             if (SplitInput[0] == "q") return 1;
@@ -340,11 +404,35 @@ namespace Felli
             
             return 0;
         }
+        /// <summary>
+        /// Checks if only the first argument of the splitted input is equal
+        /// to two given strings
+        /// </summary>
+        /// <param name="comm1">The first given string</param>
+        /// <param name="comm2">The second given string</param>
+        /// <returns></returns>
+        public ushort InputFirstCheck(string comm1, string comm2)
+        {
+            if (SplitInput[0] == "q") return 1;
+
+            else if ((SplitInput[0] != comm1) && (SplitInput[0] != comm2))
+            {
+                ErrorMessage(ErrorCode.UnkInput);
+                return 2;
+            }
+            else if (SplitInput[0] == comm2)
+            {
+                return 3;
+            }
+            
+            return 0;
+        }
 
         /// <summary>
-        /// Shows the game board
+        /// Prints the game board as a whole. If emptyMode is true, it will
+        /// print an empty board.
         /// </summary>
-        /// <param name="board"></param>
+        /// <param name="board">The board class instance to be printed.</param>
         public void ShowBoard(Board board, bool emptyMode = false)
         {
             Position pos = new Position(0,0);
@@ -363,19 +451,22 @@ namespace Felli
                 {
                     if((i + 1) % 3 == 0)
                     {
-                        Console.WriteLine($"  {displayChar}  ");
+                        Console.Write($"  {displayChar}  ");
+                        Console.WriteLine("   |   0    1    2  ");
                         Console.Write("   ");
                     }
                     else
                     {
                         Console.Write($"  {displayChar}  ");
                     }
+
                 }
                 else if(i < 6)
                 {
                     if((i + 1) % 3 == 0)
                     {
-                        Console.WriteLine($" {displayChar} ");
+                        Console.Write($" {displayChar} ");
+                        Console.WriteLine("      |    3   4   5 ");
                     }
                     else
                     {
@@ -384,14 +475,16 @@ namespace Felli
                 }
                 else if(i == 6)
                 {
-                    Console.WriteLine($"       {displayChar}       ");
+                    Console.Write($"       {displayChar}       ");
+                    Console.WriteLine("   |        6     ");
                     Console.Write("   ");
                 }
                 else if(i < 10)
                 {
                     if(i % 3 == 0)
                     {
-                        Console.WriteLine($" {displayChar} ");
+                        Console.Write($" {displayChar} ");
+                        Console.WriteLine("      |    7   8   9 ");
                     }
                     else
                     {
@@ -402,7 +495,8 @@ namespace Felli
                 {
                     if(i % 3 == 0)
                     {
-                        Console.WriteLine($"  {displayChar}  ");
+                        Console.Write($"  {displayChar}  ");
+                        Console.WriteLine("   |  10   11    12  ");
                     }
                     else
                     {
@@ -416,11 +510,12 @@ namespace Felli
 
 
         /// <summary>
-        /// 
+        /// Used in ShowBoard(). Observes the tile state and transforms it
+        /// in a char symbol.
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state">The given tilestate</param>
         /// <returns></returns>
-        public char StateToChar(Tilestate state)
+        private char StateToChar(Tilestate state)
         {
             char displayChar = ' ';
 
@@ -481,12 +576,15 @@ namespace Felli
                     break;
 
                 // Error Number 1
-                //
+                // For illegal moves where a piece cannot move.
                 case ErrorCode.IllMove:
                     Console.WriteLine(
                         "Illegal move. You cannot move to this position.");
                     break;
 
+                // Error Number 3
+                // For illegal options where there is not a player piece on the
+                // position.
                 case ErrorCode.IllOpt:
                     Console.WriteLine(
                         "Illegal option. You don't have a piece in this " +

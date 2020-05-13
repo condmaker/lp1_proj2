@@ -1,5 +1,8 @@
 namespace Felli
 {
+    /// <summary>
+    /// A enumerate class that specifies error codes.
+    /// </summary>
     public enum ErrorCode
     {
         // "Unknown Input" error code
