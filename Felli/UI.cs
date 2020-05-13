@@ -23,6 +23,9 @@ namespace Felli
                 "will also be the first one to begin.");
         }      
 
+        /// <summary>
+        /// Displays the possible game commands on screen.
+        /// </summary>
         public void MessageCommands()
         {
             Console.WriteLine("\n| LIST OF COMMANDS |");
@@ -31,13 +34,22 @@ namespace Felli
             Console.WriteLine(
                 "| move <index>     | Moves a chosen piece to a determined " +
                 "location.\n");
+            Console.WriteLine(
+                "| pass             | Passes current player's turn. \n");
+            
         }
         
+        /// <summary>
+        /// Displays a message confirming the player has chosen a piece.
+        /// </summary>
         public void MessagePieceChosen()
         {
             Console.WriteLine("Piece chosen!");
         }
 
+        /// <summary>
+        /// Warns the player about the possibility of the play being impossible.
+        /// </summary>
         public void MessageSurroundWarning()
         {
             Console.WriteLine("WARNING: This piece is completely surrounded, " +
@@ -46,6 +58,10 @@ namespace Felli
             "coordinate to reset the turn.");
         }
 
+        /// <summary>
+        /// Shows which player won at the end.
+        /// </summary>
+        /// <param name="winner">A tilestate object to define who won</param>
         public void MessageWinGame(Tilestate winner)
         {
             Console.WriteLine($"Congratulations, {winner} Player! You win!");
@@ -371,10 +387,11 @@ namespace Felli
         }
 
         /// <summary>
-        /// 
+        /// Checks if only the first argument of the splitted input is equal
+        /// to a given string
         /// </summary>
-        /// <param name="comm1"></param>
-        /// <returns></returns>
+        /// <param name="comm1">The given string</param>
+        /// <returns>A ushort number to identify the state.</returns>
         public ushort InputFirstCheck(string comm1)
         {
             if (SplitInput[0] == "q") return 1;
@@ -388,10 +405,11 @@ namespace Felli
             return 0;
         }
         /// <summary>
-        /// 
+        /// Checks if only the first argument of the splitted input is equal
+        /// to two given strings
         /// </summary>
-        /// <param name="comm1"></param>
-        /// <param name="comm2"></param>
+        /// <param name="comm1">The first given string</param>
+        /// <param name="comm2">The second given string</param>
         /// <returns></returns>
         public ushort InputFirstCheck(string comm1, string comm2)
         {
@@ -411,9 +429,10 @@ namespace Felli
         }
 
         /// <summary>
-        /// Shows the game board
+        /// Prints the game board as a whole. If emptyMode is true, it will
+        /// print an empty board.
         /// </summary>
-        /// <param name="board"></param>
+        /// <param name="board">The board class instance to be printed.</param>
         public void ShowBoard(Board board, bool emptyMode = false)
         {
             Position pos = new Position(0,0);
@@ -491,11 +510,12 @@ namespace Felli
 
 
         /// <summary>
-        /// 
+        /// Used in ShowBoard(). Observes the tile state and transforms it
+        /// in a char symbol.
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state">The given tilestate</param>
         /// <returns></returns>
-        public char StateToChar(Tilestate state)
+        private char StateToChar(Tilestate state)
         {
             char displayChar = ' ';
 
@@ -556,12 +576,15 @@ namespace Felli
                     break;
 
                 // Error Number 1
-                //
+                // For illegal moves where a piece cannot move.
                 case ErrorCode.IllMove:
                     Console.WriteLine(
                         "Illegal move. You cannot move to this position.");
                     break;
 
+                // Error Number 3
+                // For illegal options where there is not a player piece on the
+                // position.
                 case ErrorCode.IllOpt:
                     Console.WriteLine(
                         "Illegal option. You don't have a piece in this " +
