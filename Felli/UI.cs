@@ -293,9 +293,9 @@ namespace Felli
             Console.WriteLine("| Choosing a Piece                |\n");
             Console.WriteLine(">choose <tile>                     \n");
             Console.WriteLine("| Moving a piece                  |\n");
-            Console.WriteLine(">move <tile>                      ");
+            Console.WriteLine(">move <tile>                       \n");
             Console.WriteLine("| Choosing to NOT move            |\n");
-            Console.WriteLine(">pass                             ");
+            Console.WriteLine(">pass                              \n");
 
             if (ContinueTutorial() == false) return;
 
@@ -452,7 +452,7 @@ namespace Felli
                     if((i + 1) % 3 == 0)
                     {
                         Console.Write($"  {displayChar}  ");
-                        Console.WriteLine("   |   0    1    2  ");
+                        Console.WriteLine("    |   0    1    2  ");
                         Console.Write("   ");
                     }
                     else
@@ -466,7 +466,7 @@ namespace Felli
                     if((i + 1) % 3 == 0)
                     {
                         Console.Write($" {displayChar} ");
-                        Console.WriteLine("      |    3   4   5 ");
+                        Console.WriteLine("       |    3   4   5 ");
                     }
                     else
                     {
@@ -476,7 +476,7 @@ namespace Felli
                 else if(i == 6)
                 {
                     Console.Write($"       {displayChar}       ");
-                    Console.WriteLine("   |        6     ");
+                    Console.WriteLine("    |        6     ");
                     Console.Write("   ");
                 }
                 else if(i < 10)
@@ -484,7 +484,7 @@ namespace Felli
                     if(i % 3 == 0)
                     {
                         Console.Write($" {displayChar} ");
-                        Console.WriteLine("      |    7   8   9 ");
+                        Console.WriteLine("       |    7   8   9 ");
                     }
                     else
                     {
@@ -496,7 +496,7 @@ namespace Felli
                     if(i % 3 == 0)
                     {
                         Console.Write($"  {displayChar}  ");
-                        Console.WriteLine("   |  10   11    12  ");
+                        Console.WriteLine("    |  10   11    12  ");
                     }
                     else
                     {
