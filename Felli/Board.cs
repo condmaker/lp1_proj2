@@ -63,9 +63,9 @@ namespace Felli
                     { 
                         return Tilestate.Black; 
                     }
-                    else if(whiteNum == 0 && whiteNum >= 0)
+                    else if(blackNum == 0 && whiteNum >= 0)
                     { 
-                        return Tilestate.Black;
+                        return Tilestate.White;
                     }
                 }
          

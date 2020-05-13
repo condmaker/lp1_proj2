@@ -46,7 +46,6 @@ namespace Felli
             
             if(canMove == MoveList.Impossible)
             {
-                Console.WriteLine(GetTileBetween(targetTile, playerState).index);
                 if(GetTileBetween(targetTile, playerState) != null)
                 {
                     canMove = MoveList.Enemy;
