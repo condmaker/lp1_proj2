@@ -144,6 +144,7 @@ namespace Felli
             int posIndex;
             Position posCoord = new Position(0, 0);
 
+            
             posIndex = int.Parse(strCoord);
 
             posCoord.IndToPos(posIndex);
