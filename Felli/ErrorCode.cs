@@ -9,6 +9,7 @@ namespace Felli
         UnkInput,
         // "Illegal Move" error code
         IllMove,
+        // "Illegal operation" error code
         IllOpt
 
     }
