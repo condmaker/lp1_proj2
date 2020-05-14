@@ -33,7 +33,7 @@ namespace Felli
                 "| choose <index>   | Chooses an piece on the board.");
             Console.WriteLine(
                 "| move <index>     | Moves a chosen piece to a determined " +
-                "location.\n");
+                "location.");
             Console.WriteLine(
                 "| pass             | Passes current player's turn. \n");
             
@@ -61,7 +61,7 @@ namespace Felli
         /// <summary>
         /// Shows which player won at the end.
         /// </summary>
-        /// <param name="winner">A tilestate object to define who won</param>
+        /// <param name="winner">Defines who won the previous game.</param>
         public void MessageWinGame(Tilestate winner)
         {
             Console.WriteLine($"Congratulations, {winner} Player! You win!");
@@ -90,7 +90,7 @@ namespace Felli
         /// The starting loop of the game. Decides if PLAYER1 is black/white
         /// and assumes PLAYER2 as the opposite.
         /// </summary>
-        /// <returns>A ushort Return Code to see if the user wants to continue 
+        /// <returns>A 'Return Code' to see if the user wants to continue 
         /// (0) or leave the program (1).</returns>
         public Tilestate BeginningLoop()
         {
@@ -211,7 +211,9 @@ namespace Felli
             Console.WriteLine("\n| Here we can see that the white  |");
             Console.WriteLine("| piece (marked as O) can 'jump'  |");
             Console.WriteLine("| over a black piece (marked as   |");
-            Console.WriteLine("| 0). Now for the process of      |");
+            Console.WriteLine("| 0, and by the way, the 'points' |");
+            Console.WriteLine("| are empty tiles).               |");
+            Console.WriteLine("| Now for the process of doing    |");
             Console.WriteLine("| doing this move:                |\n");
 
             // Update the board to show favorable conditions
@@ -316,7 +318,7 @@ namespace Felli
         /// A simple bool function to work in tandem with ShowTutorial(). It
         /// asks if the player wants to quit the tutorial or continue it.
         /// </summary>
-        /// <returns>A boolean confirming if the input is to continue or
+        /// <returns>Confirms if the input is to continue or
         /// to quit.</returns>
         private bool ContinueTutorial()
         {
@@ -335,37 +337,48 @@ namespace Felli
         /// Will check if the splitted string has the correct inputs. Order of 
         /// arguments is important.
         /// </summary>
-        /// <param name="comm1">First Argument</param>
-        /// <param name="comm2">Second Argument</param>
-        /// <returns>A ushort Return Code to see if the user inputted 
-        /// correctly (0), incorrectly(2), or wants to leave (1)</returns>
+        /// <param name="comm1">First Argument to be compared to with the
+        /// first input</param>
+        /// <param name="comm2">Second Argument to be compared to with the
+        /// second input</param>
+        /// <returns>A Return Code to see if the user inputted correctly (0),
+        /// incorrectly (2), or wants to leave (1)</returns>
         private ushort InputCheck(string comm1, string comm2)
         {
+            // Checks if input is 'q', returning 1 to leave the program
             if (SplitInput[0] == "q") return 1;
 
+            // Compares first input to first argument, returning 2 to go back
+            // to the start of the loop
             else if (SplitInput[0] != comm1) 
             {
                 ErrorMessage(ErrorCode.UnkInput);
                 return 2;
             }
 
+            // Compares first input to first argument, returning 2 to go back
+            // to the start of the loop
             if (SplitInput[1].ToLower() != comm2)
             {
                 ErrorMessage(ErrorCode.UnkInput);
                 return 2;
             }
 
+            // Returns 0 normally in case the inputs are equal
             return 0;
         }
         /// <summary>
         /// Will check if the splitted string has the correct inputs. Order of 
         /// arguments is important.
         /// </summary>
-        /// <param name="comm1">First Argument</param>
-        /// <param name="comm2">Second Argument</param>
-        /// <param name="comm3">Third Argument</param>
-        /// <returns>A ushort Return Code to see if the user inputted 
-        /// correctly (0), incorrectly(2), or wants to leave (1)</returns>
+        /// <param name="comm1">First Argument to be compared to with the
+        /// first input</param>
+        /// <param name="comm2">Second Argument to be compared to with the
+        /// second input</param>
+        /// <param name="comm3">Third Argument to be compared to with the
+        /// second input</param>
+        /// <returns>A Return Code to see if the user inputted correctly (0),
+        /// incorrectly (2), or wants to leave (1)</returns>
         private ushort InputCheck(string comm1, string comm2, string comm3)
         {
             if (SplitInput[0] == "q") return 1;
@@ -388,29 +401,15 @@ namespace Felli
 
         /// <summary>
         /// Checks if only the first argument of the splitted input is equal
-        /// to a given string
-        /// </summary>
-        /// <param name="comm1">The given string</param>
-        /// <returns>A ushort number to identify the state.</returns>
-        public ushort InputFirstCheck(string comm1)
-        {
-            if (SplitInput[0] == "q") return 1;
-
-            else if (SplitInput[0] != comm1) 
-            {
-                ErrorMessage(ErrorCode.UnkInput);
-                return 2;
-            }
-            
-            return 0;
-        }
-        /// <summary>
-        /// Checks if only the first argument of the splitted input is equal
         /// to two given strings
         /// </summary>
-        /// <param name="comm1">The first given string</param>
-        /// <param name="comm2">The second given string</param>
-        /// <returns></returns>
+        /// <param name="comm1">The first given string to be compared with the 
+        /// first argument of the splitted input</param>
+        /// <param name="comm2">The second given string to be compared with the 
+        /// first argument of the splitted input</param>
+        /// <returns>A Return Code to see if the user inputted correctly (0),
+        /// incorrectly (2), is equal to the second argument (2) or wants to 
+        /// leave (1)</returns>
         public ushort InputFirstCheck(string comm1, string comm2)
         {
             if (SplitInput[0] == "q") return 1;
@@ -433,20 +432,29 @@ namespace Felli
         /// print an empty board.
         /// </summary>
         /// <param name="board">The board class instance to be printed.</param>
+        /// <param name="emptyMode">Defines if the board is printed empty or 
+        /// not. Can be omitted to be printed normally, but 'true' will print
+        /// an empty board regardless of state.</param>
         public void ShowBoard(Board board, bool emptyMode = false)
         {
+            // Creates a new position to record the current tile being executed
+            // on the loop
             Position pos = new Position(0,0);
+            // Will record respective tile character to be printed
             char displayChar = StateToChar(Tilestate.Empty);
 
             for(int i = 0; i < 13; i++)
             {           
 
+                // Records current tile state of given board in a specific
+                // char, if emptyMode is false.
                 if(!emptyMode)
                 {
                     pos.IndToPos(i);
                     displayChar = StateToChar(board.GetTile(pos).State);
                 }
 
+                // First column
                 if(i < 3)
                 {
                     if((i + 1) % 3 == 0)
@@ -461,6 +469,8 @@ namespace Felli
                     }
 
                 }
+
+                // Second column
                 else if(i < 6)
                 {
                     if((i + 1) % 3 == 0)
@@ -473,12 +483,16 @@ namespace Felli
                         Console.Write($" {displayChar} ");
                     }
                 }
+
+                // Third column
                 else if(i == 6)
                 {
                     Console.Write($"       {displayChar}       ");
                     Console.WriteLine("    |        6     ");
                     Console.Write("   ");
                 }
+
+                // Fourth column
                 else if(i < 10)
                 {
                     if(i % 3 == 0)
@@ -491,6 +505,8 @@ namespace Felli
                         Console.Write($" {displayChar} ");
                     }
                 }
+                
+                // Fifth column
                 else 
                 {
                     if(i % 3 == 0)
@@ -513,30 +529,34 @@ namespace Felli
         /// Used in ShowBoard(). Observes the tile state and transforms it
         /// in a char symbol.
         /// </summary>
-        /// <param name="state">The given tilestate</param>
-        /// <returns></returns>
+        /// <param name="state">A specific tile's state to decide what char
+        /// it will return</param>
+        /// <returns>A char representing a tile.</returns>
         private char StateToChar(Tilestate state)
         {
+            // Initializes the char that will be returned
             char displayChar = ' ';
 
             switch(state)
             {
                 case Tilestate.Empty:
                     displayChar = '.';
-                break;
+                    break;
+
                 case Tilestate.Black:
                     displayChar = '0';
-                break;
+                    break;
+
                 case Tilestate.White:
                     displayChar = 'O';
-                break;
+                    break;
             }
-
+            
             return displayChar;
         }
 
         /// <summary>
-        /// Changes the Input for the instance.
+        /// Changes the instance Input.
         /// </summary>
         public void WriteOnString()
         {
@@ -563,8 +583,8 @@ namespace Felli
         /// <summary>
         /// Obtains numerous error codes.
         /// </summary>
-        /// <param name="errorNumb">ErrorCode enumerate that represents the 
-        /// error code</param>
+        /// <param name="errorNumb">Represents the given error code to be 
+        /// analyzed.</param>
         public void ErrorMessage(ErrorCode errorNumb)
         {
             switch (errorNumb)
