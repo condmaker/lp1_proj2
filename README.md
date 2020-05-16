@@ -596,6 +596,10 @@ se o jogador pode ir à tile (`UpdateSimple()` de `Board`), não pode ir
 (`ErrorMessage()` de *Illegal Move*), ou se é movimentação do tipo *enemy*
 (`UpdateEnemy()` de `Board`).
 
+### Diagrama UML
+
+![UML]
+
 ## Referências
 
 Enquanto poucas, uma referência extremamente importante foi o *Jogo do Galo* 
@@ -603,3 +607,5 @@ feito pelo Professor Nuno Fachada em uma de suas aulas. A criação da
 enumeração em `Tilestate` e sua utilização em `Tile`, a classe `Position`, e 
 a propriedade `NextTurn` na classe `Board` foram todas baseadas na lógica e
 no código apresentados esta aula.
+
+[UML]: Diagram/UML.png
