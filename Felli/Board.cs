@@ -223,10 +223,10 @@ namespace Felli
         /// <param name="after">The after tile that will be swapped with the
         /// current player's state</param>
         /// <param name="player">Current player's state (black or white)</param>
-        public void UpdateSimple(Tile current, Tile after, Tilestate player)
+        public void UpdateSimple(Tile current, Tile after)
         {
             current.State = Tilestate.Empty;
-            after.State = player;
+            after.State = NextTurn;
         }
 
         /// <summary>
@@ -238,12 +238,22 @@ namespace Felli
         /// <param name="after">The after tile that will be swapped with the
         /// current player's state</param>
         /// <param name="player">Current player's state (black or white</param>
-        public void UpdateEnemy(Tile current, Tile after, Tilestate player)
+        public void UpdateEnemy(Tile current, Tile after)
         {
             current.State = Tilestate.Empty;
-            after.State = player;
+            after.State = NextTurn;
             // Tile where the enemy is, will be swapped with a empty one
-            current.GetTileBetween(after, player).State = Tilestate.Empty;
+            current.GetTileBetween(after, NextTurn).State = Tilestate.Empty;
+            //Decreased the value of tiles from the type that was killed
+            if(NextTurn == Tilestate.White)
+            {
+                blackNum--;
+            }
+            else if(NextTurn == Tilestate.Black)
+            {
+                whiteNum--;
+            }
+
         }
 
         /// <summary>

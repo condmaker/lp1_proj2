@@ -128,12 +128,26 @@ namespace Felli
                 currentPos = gameBoard.GetTile(
                     ConvertStringToPos(userInterface.SplitInput[1]));
 
+
+                if(currentPos.State != gameBoard.NextTurn)
+                {
+                    userInterface.ErrorMessage(ErrorCode.WrongTurn);
+                    continue;
+                }
+
+                if(currentPos.State == Tilestate.Empty)
+                {
+                    userInterface.ErrorMessage(ErrorCode.IllOpt);
+                    continue;
+                }
+
                 // Checks if the chosen piece is surrounded and warns the player
                 if (currentPos.IsSurrounded())
                 {
                     userInterface.MessageSurroundWarning();
                 }
                 
+
                 // Shows the player that the piece was successfully chosen,
                 // And records the input again to move it.
                 userInterface.MessagePieceChosen();
@@ -168,6 +182,7 @@ namespace Felli
             // After the loop is over, checks if the game was ended and 
             // prints who won if so.
             if (gameBoard.IsGameOver == true)
+                userInterface.ShowBoard(gameBoard);
                 userInterface.MessageWinGame(gameBoard.Winner);
 
         }
@@ -217,13 +232,13 @@ namespace Felli
                     break;
                 case MoveList.Possible:
                     gameBoard.UpdateSimple(
-                        currentTile, afterTile, currentPlayer);
+                        currentTile, afterTile);
 
                     gameBoard.Turn++;
                     break;
                 case MoveList.Enemy:
                     gameBoard.UpdateEnemy(
-                        currentTile, afterTile, currentPlayer);
+                        currentTile, afterTile);
                         
                     gameBoard.Turn++;
                     break;
