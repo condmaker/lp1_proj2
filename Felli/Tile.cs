@@ -161,6 +161,13 @@ namespace Felli
         } 
 
 
+        /// <summary>
+        /// Observes the possibilities of tiles in-between two positions.
+        /// </summary>
+        /// <param name="pos1">The first position to be compared</param>
+        /// <param name="pos2">The second position to be compared</param>
+        /// <returns>A bool that returns true if there is a tile
+        /// in-between, or false if there is not.</returns>
         public bool CheckBetweenPossibilities(Position pos1, Position pos2)
         {
             string colString = pos1.Col + "" + pos2.Col;
