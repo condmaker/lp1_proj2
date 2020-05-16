@@ -610,7 +610,15 @@ namespace Felli
                         "Illegal option. You don't have a piece in this " +
                         "position.");
                     break;
-                    
+                
+                // Error Number 4
+                // For illegal options where the player trys to choose the
+                // wrong type of piece
+                case ErrorCode.WrongTurn:
+                    Console.WriteLine(
+                        "Illegal option. You are trying to choose a piece " +
+                        "that doesn't belong to you.");
+                    break;
                 default:
                     break;
             }

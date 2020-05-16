@@ -244,6 +244,16 @@ namespace Felli
             after.State = NextTurn;
             // Tile where the enemy is, will be swapped with a empty one
             current.GetTileBetween(after, NextTurn).State = Tilestate.Empty;
+            //Decreased the value of tiles from the type that was killed
+            if(NextTurn == Tilestate.White)
+            {
+                blackNum--;
+            }
+            else if(NextTurn == Tilestate.Black)
+            {
+                whiteNum--;
+            }
+
         }
 
         /// <summary>

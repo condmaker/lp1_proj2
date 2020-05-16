@@ -10,7 +10,9 @@ namespace Felli
         // "Illegal Move" error code
         IllMove,
         // "Illegal operation" error code
-        IllOpt
+        IllOpt,
+        //"wrong Turn" error code
+        WrongTurn
 
     }
 }

@@ -128,12 +128,26 @@ namespace Felli
                 currentPos = gameBoard.GetTile(
                     ConvertStringToPos(userInterface.SplitInput[1]));
 
+
+                if(currentPos.State != gameBoard.NextTurn)
+                {
+                    userInterface.ErrorMessage(ErrorCode.WrongTurn);
+                    continue;
+                }
+
+                if(currentPos.State == Tilestate.Empty)
+                {
+                    userInterface.ErrorMessage(ErrorCode.IllOpt);
+                    continue;
+                }
+
                 // Checks if the chosen piece is surrounded and warns the player
                 if (currentPos.IsSurrounded())
                 {
                     userInterface.MessageSurroundWarning();
                 }
                 
+
                 // Shows the player that the piece was successfully chosen,
                 // And records the input again to move it.
                 userInterface.MessagePieceChosen();
