@@ -222,7 +222,6 @@ namespace Felli
         /// empty one</param>
         /// <param name="after">The after tile that will be swapped with the
         /// current player's state</param>
-        /// <param name="player">Current player's state (black or white)</param>
         public void UpdateSimple(Tile current, Tile after)
         {
             current.State = Tilestate.Empty;
@@ -237,7 +236,6 @@ namespace Felli
         /// empty one</param>
         /// <param name="after">The after tile that will be swapped with the
         /// current player's state</param>
-        /// <param name="player">Current player's state (black or white</param>
         public void UpdateEnemy(Tile current, Tile after)
         {
             current.State = Tilestate.Empty;

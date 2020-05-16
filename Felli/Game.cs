@@ -69,8 +69,7 @@ namespace Felli
             Tilestate playerColor;
 
             // Will be used to store tiles selected by the player's input.
-            Tile currentPos;
-            Tile nextPos;
+            Tile currentPos, nextPos;
             
             // Shows the starting board
             userInterface.ShowBoard(gameBoard);
@@ -78,17 +77,19 @@ namespace Felli
             // Updates the playerColor variable with the player's input
             playerColor = userInterface.BeginningLoop();
 
-            // If the previous method returned empty, leaves the method and
-            // consequently the program
-            if (playerColor == Tilestate.Empty) return;
-
+            // If the previous method returned empty, leaves the method 
+            if (playerColor == Tilestate.Empty) 
+            {
+                userInterface.ErrorMessage(ErrorCode.UnkInput);
+                return;
+            }
             // Selects the first player to play
             gameBoard.SelectPlayersTurn(playerColor);
 
             // The main game loop. Will run while the user's input is different
             // than 'q' and the GameOver property from this instances' 
             // game board returns true (game still not over)
-            while ((userInterface.Input != "q") && !gameBoard.IsGameOver)
+            while ((userInterface.Input != "q") && (!gameBoard.IsGameOver))
             {
                 // Prints the starting messages and records the player's input,
                 // and splits it accordingly
@@ -132,12 +133,6 @@ namespace Felli
                 if(currentPos.State != gameBoard.NextTurn)
                 {
                     userInterface.ErrorMessage(ErrorCode.WrongTurn);
-                    continue;
-                }
-
-                if(currentPos.State == Tilestate.Empty)
-                {
-                    userInterface.ErrorMessage(ErrorCode.IllOpt);
                     continue;
                 }
 

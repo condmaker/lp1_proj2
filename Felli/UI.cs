@@ -310,7 +310,8 @@ namespace Felli
             Console.WriteLine("| yours remaining on the board.   |");
             Console.WriteLine("-----------------------------------");
             Console.WriteLine("| You have reached the end of the |");
-            Console.WriteLine("|            tutorial.            |");
+            Console.WriteLine("|  tutorial and returned to the   |");
+            Console.WriteLine("|            Main Menu.           |");
             Console.WriteLine("-----------------------------------");
         }
 
