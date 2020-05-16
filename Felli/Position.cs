@@ -8,16 +8,29 @@ namespace Felli
     /// </summary>
     public class Position
     {
+        // Row of the current instance position
         public int Row { get; private set;}
+        // Column of the current instance position
         public int Col { get; private set;}
         
+        /// <summary>
+        /// Constructor of the class. Initializes the instance's row and column.
+        /// </summary>
+        /// <param name="row">Will determine the row of this instance.</param>
+        /// <param name="col">Will determine the column of this instance.
+        /// </param>
         public Position(int row, int col)
         {
             Row = row;
             Col = col;
         }
 
-    
+        /// <summary>
+        /// A method that converts a tile index to a Row/Column based position.
+        /// </summary>
+        /// <param name="ind">The given tile index to be analyzed.</param>
+        /// <returns>Returns itself, the instance of the position with the
+        /// correct row and column by the analyzed index.</returns>
         public Position IndToPos(int ind)
         {
             switch(ind)
@@ -47,7 +60,7 @@ namespace Felli
                     Row = 1;
                     break;
                 case 6:
-                    //center
+                    // Center tile.
                     Col = 4;
                     Row = 4;
                     break;
