@@ -217,13 +217,13 @@ namespace Felli
                     break;
                 case MoveList.Possible:
                     gameBoard.UpdateSimple(
-                        currentTile, afterTile, currentPlayer);
+                        currentTile, afterTile);
 
                     gameBoard.Turn++;
                     break;
                 case MoveList.Enemy:
                     gameBoard.UpdateEnemy(
-                        currentTile, afterTile, currentPlayer);
+                        currentTile, afterTile);
                         
                     gameBoard.Turn++;
                     break;

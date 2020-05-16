@@ -544,11 +544,11 @@ namespace Felli
                     break;
 
                 case Tilestate.Black:
-                    displayChar = '0';
+                    displayChar = 'B';
                     break;
 
                 case Tilestate.White:
-                    displayChar = 'O';
+                    displayChar = 'W';
                     break;
             }
             
