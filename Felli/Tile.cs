@@ -131,7 +131,6 @@ namespace Felli
                         bool aux = false;
                         betweenPos.IndToPos(s.index);
 
-
                         if(betweenPos.Row == targetPos.Row
                         && betweenPos.Row == selfPos.Row) 
                         {
@@ -184,18 +183,19 @@ namespace Felli
                     break; 
             }
 
-            switch(colString)
-            {
-                case "02":
-                    aux = true;
-                    break;
-                case "20":
-                    aux = true;
-                    break;
-                case "11":
-                    aux = true;
-                    break;
-            }
+            if(pos1.Row != pos2.Row)
+                switch(colString)
+                {
+                    case "02":
+                        aux = true;
+                        break;
+                    case "20":
+                        aux = true;
+                        break;
+                    case "11":
+                        aux = true;
+                        break;
+                }
 
             
             return aux;

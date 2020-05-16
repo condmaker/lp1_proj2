@@ -182,6 +182,7 @@ namespace Felli
             // After the loop is over, checks if the game was ended and 
             // prints who won if so.
             if (gameBoard.IsGameOver == true)
+                userInterface.ShowBoard(gameBoard);
                 userInterface.MessageWinGame(gameBoard.Winner);
 
         }

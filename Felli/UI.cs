@@ -28,7 +28,7 @@ namespace Felli
         /// </summary>
         public void MessageCommands()
         {
-            Console.WriteLine("\n| LIST OF COMMANDS |");
+            Console.WriteLine("| LIST OF COMMANDS |");
             Console.WriteLine(
                 "| choose <index>   | Chooses an piece on the board.");
             Console.WriteLine(
@@ -83,7 +83,7 @@ namespace Felli
         public void MessageTurn(int turn, Tilestate player)
         {
             Console.WriteLine($"\nTURN {turn}");
-            Console.WriteLine($"{player} Piece Player round\n");
+            Console.WriteLine($"{player} Piece Player round");
         }
 
         /// <summary>
@@ -209,9 +209,9 @@ namespace Felli
             ShowBoard(exampleBoard);
 
             Console.WriteLine("\n| Here we can see that the white  |");
-            Console.WriteLine("| piece (marked as O) can 'jump'  |");
+            Console.WriteLine("| piece (marked as W) can 'jump'  |");
             Console.WriteLine("| over a black piece (marked as   |");
-            Console.WriteLine("| 0, and by the way, the 'points' |");
+            Console.WriteLine("| B, and by the way, the 'points' |");
             Console.WriteLine("| are empty tiles).               |");
             Console.WriteLine("| Now for the process of doing    |");
             Console.WriteLine("| doing this move:                |\n");
@@ -443,6 +443,7 @@ namespace Felli
             // Will record respective tile character to be printed
             char displayChar = StateToChar(Tilestate.Empty);
 
+            Console.WriteLine("");
             for(int i = 0; i < 13; i++)
             {           
 
@@ -521,7 +522,8 @@ namespace Felli
                 }
           
             }
-
+            Console.WriteLine("");
+        
         }
 
 
